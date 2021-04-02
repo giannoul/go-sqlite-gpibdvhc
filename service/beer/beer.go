@@ -6,11 +6,11 @@ import (
 
 // RandomBeer d
 type RandomBeer struct {
-	resource string
+	resource []byte
 	randomapi.RandomAPI
 }
 
 // GetRandomBeer d
-func (beer RandomBeer) GetRandomBeer() string {
-	return string(beer.GetItemFunc("beer/random_beer"))
+func (beer RandomBeer) GetRandomBeer() []byte {
+	return beer.GetItemFunc("beer/random_beer")
 }

@@ -1,12 +1,21 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
-	"github.com/igiannoulas/go-sqlite-gpibdvhc/service/beer"
+	beermodel "github.com/igiannoulas/go-sqlite-gpibdvhc/repository/model/beer"
+	beersvc "github.com/igiannoulas/go-sqlite-gpibdvhc/service/beer"
 )
 
 func main() {
-	mybeer := beer.RandomBeer{}
-	fmt.Println(mybeer.GetRandomBeer())
+	mybeersvc := beersvc.RandomBeer{}
+	mybeermodel := beermodel.Beer{}
+
+	if err := json.Unmarshal(mybeersvc.GetRandomBeer(), &mybeermodel); err != nil {
+		panic(err)
+	}
+
+	fmt.Println(mybeermodel)
+	fmt.Printf("%#v", mybeermodel)
 }
